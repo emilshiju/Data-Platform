@@ -13,23 +13,19 @@ const ListTable=({allData})=>{
     const [displayData,setDisplayData]=useState(false)
 
 
-console.log('alllllllllllllllllllllllllllllllllllllllllll',allData)
 
 const dPdf = (pdfUrl) => {
   const link = document.createElement('a');
   link.href = pdfUrl;
-  link.download = pdfUrl.split('/').pop();  // Extract the file name from the URL
-  link.target = '_blank';  // Open in a new tab (optional)
-  link.click();  // Trigger the click to download the file
+  link.download = pdfUrl.split('/').pop(); 
+  link.target = '_blank';  
+  link.click();  
  
 };
 
 
 
 const downloadPdf=(alldata)=>{
-
-
-
   
 
   <PdfDocument  data={alldata} />
@@ -68,7 +64,7 @@ const downloadPdf=(alldata)=>{
               </th>
             </tr>
           </thead>
-          {allData && allData.length > 0&&(
+          {allData && allData.length > 0?(
             <tbody>
             {allData.map((curr,index)=>(
 
@@ -82,7 +78,7 @@ const downloadPdf=(alldata)=>{
               <td className="px-6 py-4" onClick={()=>dPdf(curr.url)}>View</td>
             </tr>
             
-            ))}</tbody>)}
+            ))}</tbody>):<div className="flex flex-row justify-center mt-20  text-4xl ml-60">NOTHING .......</div>}
         </table>
       </div>
       </div>

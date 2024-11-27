@@ -10,12 +10,7 @@ import ListTable from "./ListTable"
 
 const SearchBar=()=>{
 
-    useEffect(()=>{
-
-        
-
-    },[])
-
+    
 
     const [search_Input,set_Search_Input]=useState('')
     const [searchedData,setSearchedData]=useState(false)
@@ -103,7 +98,7 @@ const SearchBar=()=>{
         </button>
       </div>
     </div>
-    <ListTable  allData={searchedData} />
+    {searchedData&&<ListTable  allData={searchedData} />}
     </>
 
     )

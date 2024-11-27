@@ -59,6 +59,11 @@ api.interceptors.response.use(
       
         // console.log('Response data:', response.data);
       } catch (error) {
+
+
+        if(error.response){
+          
+        }
        
         console.error('Error occurred in response interceptor:', error);
       }
