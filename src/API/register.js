@@ -7,8 +7,6 @@ import api from "../Interceptor";
 const RegisterSubmit=(data)=>{
 
 
-
-
     return new Promise((resolve,reject)=>{
     
 
@@ -16,9 +14,14 @@ const RegisterSubmit=(data)=>{
         .then((response)=>{
             resolve(response.data)
         })
+        .catch((eror)=>{
+            console.log(eror)
+        })
 
     })
 }
+
+
 
 export default RegisterSubmit
 
@@ -31,10 +34,7 @@ export const loginSubmit=(data)=>{
             
             resolve(res.data)
         })
-        .catch((error)=>{
-            
-
-            
+        .catch((error)=>{            
            
             reject(error)
         })

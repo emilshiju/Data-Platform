@@ -1,5 +1,5 @@
 import Header from "../../Components/Header"
-import ListTable from "../../Components/ListTable"
+
 import SearchBar from "../../Components/Search_bar"
 
 
@@ -12,7 +12,7 @@ const Home=()=>{
         <div>
             <Header  />
             <SearchBar  />
-            {/* <ListTable  /> */}
+           
 
         </div>
     )

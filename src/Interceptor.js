@@ -57,12 +57,13 @@ api.interceptors.response.use(
 
       try {
       
-        // console.log('Response data:', response.data);
+
+        
       } catch (error) {
 
 
         if(error.response){
-          
+          console.log("Intrenal Error")
         }
        
         console.error('Error occurred in response interceptor:', error);

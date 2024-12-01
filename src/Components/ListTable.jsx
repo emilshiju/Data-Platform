@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-// import { PDFDownloadLink } from '@react-pdf/renderer';
+import React from "react";
+
 import { useNavigate } from 'react-router-dom';
 import PdfDocument from "./PdfGenerator";
-import { pdf } from "@react-pdf/renderer";
-import { saveAs } from "file-saver";
 
+import FoundLocation from "../API/foundLocation";
+
+import { ToastContainer, toast, Slide } from "react-toastify";
 
 const ListTable=({allData})=>{
-    const navgiate=useNavigate()
 
 
-    const [displayData,setDisplayData]=useState(false)
+    const navigate=useNavigate()
 
 
 
@@ -30,15 +30,41 @@ const downloadPdf=(alldata)=>{
 
   <PdfDocument  data={alldata} />
 
-    // const doc = <PdfDocument data={alldata} />;
-    // pdf(doc)
-    //   .toBlob()
-    //   .then((blob) => {
-    //     const link = document.createElement("a");
-    //     link.href = URL.createObjectURL(blob);
-    //     link.download = "selected-data.pdf";
-    //     link.click(); // Automatically trigger the download
-    //   });
+}
+
+
+
+const showErrorMessage=()=>{
+  toast.error("Location not found!", {
+    position: "top-right",
+    autoClose: 1000,
+  });
+  
+  
+}
+
+const fetchLocation=(add)=>{
+
+  FoundLocation(add)
+  .then((res)=>{
+
+    if(res){
+
+      let {longitude,latitude}=res
+      navigate(`/map/${longitude}/${latitude}`)
+
+      console.log("yes heree")
+    }else{
+      showErrorMessage()
+      
+    }
+  })
+  .catch((error)=>{
+    showErrorMessage()
+  })
+
+
+
 
 }
 
@@ -46,6 +72,7 @@ const downloadPdf=(alldata)=>{
 
     return(
         <div>
+           <ToastContainer />
         <div className="relative overflow-x-auto mt-20">
         <table className="w-[1000px] ml-72 text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
@@ -62,6 +89,9 @@ const downloadPdf=(alldata)=>{
               <th scope="col" className="px-6 py-3">
                 Data
               </th>
+              <th scope="col" className="px-6 py-3">
+                Map
+              </th>
             </tr>
           </thead>
           {allData && allData.length > 0?(
@@ -71,11 +101,13 @@ const downloadPdf=(alldata)=>{
           
             <tr className="bg-white border-b ">
               <th className="px-6 py-4">
-                {curr.header}
+                {curr&&curr.header.length>3?curr.header:'Null'}
               </th>
-              <td className="px-6 py-4">{curr.dates}</td>
-              <td className="px-6 py-4">{curr.addresses}</td>
+              <td className="px-6 py-4">{curr?.dates??'null'}</td>
+              <td className="px-6 py-4">{curr?.addresses}</td>
               <td className="px-6 py-4" onClick={()=>dPdf(curr.url)}>View</td>
+              <td className="px-6 py-4" onClick={()=>fetchLocation(curr?.addresses)}>view location</td>
+
             </tr>
             
             ))}</tbody>):<div className="flex flex-row justify-center mt-20  text-4xl ml-60">NOTHING .......</div>}

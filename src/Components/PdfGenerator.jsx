@@ -19,7 +19,7 @@ import {
       padding: 10,
     },
     viewer: {
-      width: window.innerWidth, //the pdf viewer will take up all of the width and height
+      width: window.innerWidth, 
       height: window.innerHeight,
     },
   });
@@ -36,13 +36,7 @@ import {
         </button>
       </a>
     </div>
-      //   <Document>
-      //   <Page size="A4" style={styles.page}>
-      //     <View style={styles.section}>
-      //       <Text>Type: {data}</Text>
-      //     </View>
-      //   </Page>
-      // </Document>
+   
     )
   }
 

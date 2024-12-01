@@ -90,7 +90,7 @@ const SearchBar=()=>{
         
         />
         <button
-          // type="submit"
+         
           onClick={searchData}
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700    font-medium rounded-lg text-sm px-4 py-2 "
         >
